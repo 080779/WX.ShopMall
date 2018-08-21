@@ -1,0 +1,73 @@
+<!--pages/home/home.wxml-->
+<!--搜索-->
+<view class="wxSearch-section">
+  <view class="wxSearch-pancel">
+    <view class="placeholder"><icon class="weui-icon-search_in-box" type="search" size="14"></icon></view>
+    <input bindconfirm='wxSearchInput' confirm-type="search"value="{{value}}" class="wxSearch-input" placeholder='搜索您想要的商品' />
+  </view>
+</view>
+
+<view class='changebanners'>
+<!--幻灯片-->
+  <swiper class="banners" autoplay="true" interval="2500" duration="500">
+    <block wx:for="{{slide}}" wx:key="{{key}}">
+      <swiper-item>
+        <image src="{{item.imgUrl}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  </view>
+  <!--公告  -->
+  <view class='index-msg'>
+    <view class='shop-thumb'><image class='shop-gonggao' src='/images/gonggao.png'></image></view>
+    <view class='mag-gang'></view>
+    <view class='laba-'><image class='shop-laba' src='/images/laba.png'></image></view>
+    <view class='msgcontainer'>
+    <!--文字滚动  -->
+    <view class='msgcontainer'>
+      <swiper class="swiper_container" autoplay="ture" interval="2500">
+        <block wx:for="{{notice}}" wx:key="{{key}}">
+          <navigator hover-class='none' url="" open-type="navigate">
+            <swiper-item>
+              <view class="swiper_item">
+              <rich-text class='content-no' nodes="{{item.content}}"></rich-text>
+              </view>
+              <view class="swiper_item">{{item.code}}</view>
+            </swiper-item>
+          </navigator>
+        </block>
+      </swiper>
+    </view>
+  </view>
+
+  <view class='shop-line'></view>
+
+  <!--图标分类-->
+    <view class='shop-image1'>
+      <navigator class='image-cla' wx:for="{{goodstype}}" wx:key="{{key}}" hover-class='none' url="../classify/classify" bindtap='setclassid' data-classid="{{item.id}}" open-type="switchTab">
+        <image class="shop-imgs" src="{{item.imgUrl}}"></image>
+        <view class='shop-pin'>{{item.name}}</view>
+      </navigator>
+    </view>
+
+  <view class='shopping-line'></view>
+  <!--热销商品-->
+  <view class='shop-goods'>
+    <view class='shop-gang1'></view>
+    <view class='shop-shangpin'>热销商品</view>
+    <view class='shop-gang2'></view>
+  </view>
+  <!--商品列表-->
+  <navigator hover-class='none' open-type='navigate' url='/pages/goodsitem/goodsitem?id={{item.id}}' class='swiper-recommend' wx:for="{{hotgoods.goods}}" wx:key="{{key}}">
+    <view><image class="shop-img" src="{{item.imgUrl}}"></image></view>
+    <view class="shop-img"><image src="{{item.imgUrl}}"></image></view>
+    <view class='shop-tex'>
+      <view class='shop-text1'>{{item.name}}</view>
+      <view class='shop-text3'>￥{{item.realityPrice}}</view>
+      <view class='shop-twebtn'>
+        <view class='shop-text2'>已售：{{item.saleNum}}件</view>
+        <view class='shop-text2'>库存：{{item.inventory}}</view>
+      </view>
+    </view>
+  </navigator>
+</view>

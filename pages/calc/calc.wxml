@@ -1,0 +1,10 @@
+<!--pages/calc/calc.wxml.wxml-->
+<view>
+  <form bindsubmit='submitcalc'>
+    <input name='num1'></input>
+    <text>+</text>
+    <input name='num2'></input>
+    <button form-type='submit'>=</button>
+    <text>{{res}}</text>
+  </form>
+</view>
